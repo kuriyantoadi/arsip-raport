@@ -43,15 +43,11 @@
         <th>
           <center>Kelas
         </th>
-        
-        <th>
-          <center>View Raport
-        </th>
-        <th>
-          <center>Edit
-        </th>
         <th>
           <center>Hapus
+        </th>
+        <th>
+          <center>Opsi
         </th>
 
       </tr>
@@ -75,18 +71,15 @@
         <td>
           <center><?php echo $d['nama_kelas']; ?>
         </td>
-
         <td>
           <center>
-            <a type="button" class="btn btn-primary btn-sm" href="raport_lihat.php?id_siswa=<?php echo $d['id_siswa'] ?>">View</a>
+          <a type="button" class="btn btn-danger btn-sm" href="siswa_hapus.php?id_siswa=<?php echo $d['id_siswa']; ?>"
+            onclick="return confirm('Anda yakin Hapus data siswa <?php echo $d['nama_siswa']; ?> ?')">Hapus</a>
         </td>
         <td>
           <center>
-            <a type="button" class="btn btn-info btn-sm" href="siswa_edit.php?id_siswa=<?php echo $d['id_siswa'] ?>">Edit</a>
-        </td>
-        <td>
-          <center>
-            <a type="button" class="btn btn-warning btn-sm" href="siswa_hapus.php?id_siswa=<?php echo $d['id_siswa']; ?>" onclick="return confirm('Anda yakin Hapus data siswa <?php echo $d['nama_siswa']; ?> ?')">Hapus</a>
+          <a type="button" class="btn btn-warning btn-sm" href="siswa_edit.php?id_siswa=<?php echo $d['id_siswa'] ?>">Edit</a>
+          <a type="button" class="btn btn-info btn-sm" href="raport_lihat.php?id_siswa=<?php echo $d['id_siswa'] ?>">View</a>
         </td>
       </tr>
 

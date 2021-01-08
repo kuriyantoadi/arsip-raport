@@ -1,9 +1,19 @@
 <?php include('header.php') ?>
+
+<?php
+include('../../koneksi.php');
+$id_siswa = $_GET['id_siswa'];
+$jns_file = $_GET['jns_file'];
+$nama_file = $_GET['nama_file'];
+$data = mysqli_query($koneksi, "select * from tb_siswa where id_siswa='$id_siswa' ");
+while ($d = mysqli_fetch_array($data)) {
+?>
+
 <div class="container">
   <div class="row">
     <div class="col-md-12">
       <center>
-        <h3 style="margin-top:  25px;"><b>Arsip Data Siswa</b></h3>
+        <h3 style="margin-top:  25px;"><b><?php echo $jns_file ?></b></h3>
       </center>
       <br>
       <!-- font ganti jenis -->
@@ -11,15 +21,7 @@
 
   </div>
 
-  <?php
-  include('../../koneksi.php');
-  $id_siswa = $_GET['id_siswa'];
-  $jns_file = $_GET['jns_file'];
-  $nama_file = $_GET['nama_file'];
-  $data = mysqli_query($koneksi, "select * from tb_siswa where id_siswa='$id_siswa' ");
-  while ($d = mysqli_fetch_array($data)) {
 
-  ?>
 
 
     <form class="" action="raport_update.php" method="post" enctype="multipart/form-data">

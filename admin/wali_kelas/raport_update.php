@@ -46,4 +46,4 @@ mysqli_query($koneksi, "UPDATE tb_siswa SET
              ");
 
 
-// header("location:raport_tampil.php?id_siswa=$id_siswa&jns_file=$jns_file&nama_file=$nama_file");
+header("location:raport_tampil.php?id_siswa=$id_siswa&jns_file=$jns_file&nama_file=$nama_file");

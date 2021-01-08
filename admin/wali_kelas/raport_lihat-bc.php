@@ -18,40 +18,17 @@
   while ($d = mysqli_fetch_array($data)) {
 
   $jns_array = array(
-    'raport1' => 'Raport Asli Semester 1 ',
-    'raport2' => 'Raport Asli Semester 2',
-    'raport3' => 'Raport Asli Semester 3',
-    'raport4' => 'Raport Asli Semester 4',
-    'raport5' => 'Raport Asli Semester 5',
-    'scan_raport1' => 'Raport Scan Semester 1 ',
-    'scan_raport2' => 'Raport Scan Semester 2',
-    'scan_raport3' => 'Raport Scan Semester 3',
-    'scan_raport4' => 'Raport Scan Semester 4',
-    'scan_raport5' => 'Raport Scan Semester 5',
+    'raport1' => 'Raport Semester 1',
+    'raport2' => 'Raport Semester 2',
+    'raport3' => 'Raport Semester 3',
+    'raport4' => 'Raport Semester 4',
+    'raport5' => 'Raport Semester 5',
     'skl' => 'SKL',
     'ijazah' => 'Ijazah',
     'ijazah_lgsr' => 'Ijazah Legalisir',
     'skhun' => 'SKHUN',
     'photo' => 'Photo Siswa'
-  );
-
-  $raport_db = array(
-    'raport1' => 'raport_sem1',
-    'raport2' => 'raport_sem2',
-    'raport3' => 'raport_sem3',
-    'raport4' => 'raport_sem4',
-    'raport5' => 'raport_sem5',
-    'scan_raport1' => 'raport_scan_sem1',
-    'scan_raport2' => 'raport_scan_sem2',
-    'scan_raport3' => 'raport_scan_sem3',
-    'scan_raport4' => 'raport_scan_sem4',
-    'scan_raport5' => 'raport_scan_sem5',
-    'skl' => 'SKL',
-    'ijazah' => 'Ijazah',
-    'ijazah_lgsr' => 'Ijazah Legalisir',
-    'skhun' => 'SKHUN',
-    'photo' => 'Photo Siswa'
-  );
+  )
 
   ?>
 
@@ -77,16 +54,14 @@
     </table>
 
     <h3 style="margin-top:  50px;margin-bottom: 20px">
-      <center>Daftar Raport</center>
+      <center>File Arsip Siswa</center>
     </h3>
-
     <table class="table table-bordered">
       <tr>
         <th><center>Nama File</th>
-        <th><center>Kondisi Raport Asli</th>
-        <th><center>Kondisi Raport Scan</th>
-        <th><center>Opsi Raport Asli</th>
-        <th><center>Opsi Raport Scan</th>
+        <th><center>Kondisi</th>
+        <th><center>View</th>
+        <th><center>Download</th>
       </tr>
       <tr>
         <td>Rapor Semester 1</td>
@@ -99,23 +74,11 @@
            } ?>
         </td>
         <td>
-          <?php
-          if (empty($d['raport_scan_sem1'])) {
-            echo "Maaf, Raport Belum Di input";
-         }else{
-           echo $d['raport_scan_sem1'];
-           } ?>
+          <center><a type="button" class="btn btn-info btn-sm" name="button"
+            href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['raport1'] ?>&nama_file=raport_sem1">View</a>
         </td>
         <td>
-          <center><a type="button" class="btn btn-info btn-sm" name="button"
-            href="raport_tampil.php?id_siswa=<?= $d['id_siswa']; ?>&jns_file=<?= $jns_array['raport1'] ?>&nama_file=<?= $raport_db['raport1'] ?>">View</a>
-          <a type="button" href="../../raport/raport_sem1/<?= $d['raport_sem1'] ?>"
-            class="btn btn-success btn-sm" name="button">Download</a>
-        </td>
-        <td>
-          <center><a type="button" class="btn btn-info btn-sm" name="button"
-            href="raport_tampil.php?id_siswa=<?= $d['id_siswa']; ?>&jns_file=<?= $jns_array['scan_raport1'] ?>&nama_file=<?= $raport_db['scan_raport1'] ?>">View</a>
-          <a type="button" href="../../raport/<?= $raport_db['scan_raport1'] ?>/<?= $d['raport_scan_sem1'] ?>"
+          <center><a type="button" href="../../raport/raport_sem1/<?php echo $d['raport_sem1'] ?>"
             class="btn btn-success btn-sm" name="button">Download</a>
         </td>
       </tr>
@@ -129,24 +92,12 @@
          echo $d['raport_sem2'];
          } ?>
        </td>
-       <td>
-         <?php
-         if (empty($d['raport_scan_sem2'])) {
-           echo "Maaf, Raport Belum Di input";
-        }else{
-          echo $d['raport_scan_sem2'];
-          } ?>
-       </td>
         <td>
           <center><a type="button" class="btn btn-info btn-sm" name="button"
             href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['raport2'] ?>&nama_file=raport_sem2">View</a>
-          <a type="button" href="../../raport/raport_sem2/<?= $d['raport_sem2'] ?>"
-            class="btn btn-success btn-sm" name="button">Download</a>
         </td>
         <td>
-          <center><a type="button" class="btn btn-info btn-sm" name="button"
-            href="raport_tampil.php?id_siswa=<?= $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['scan_raport2'] ?>&nama_file=<?= $raport_db['scan_raport2'] ?>">View</a>
-          <a type="button" href="../../raport/<?= $raport_db['scan_raport2'] ?>/<?= $d['raport_scan_sem2'] ?>"
+          <center><a type="button" href="../../raport/raport_sem2/<?php echo $d['raport_sem2'] ?>"
             class="btn btn-success btn-sm" name="button">Download</a>
         </td>
       </tr>
@@ -161,23 +112,12 @@
          }
          ?>
        </td>
-       <td>
-         <?php
-         if (empty($d['raport_scan_sem3'])) {
-           echo "Maaf, Raport Belum Di input";
-        }else{
-          echo $d['raport_scan_sem3'];
-          } ?>
-       </td>
         <td>
           <center><a type="button" class="btn btn-info btn-sm" name="button"
             href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['raport3'] ?>&nama_file=raport_sem3">View</a>
-          <a type="button" href="../../raport/<?= $raport_db['raport3'] ?>/<?= $d['raport_sem3'] ?>" class="btn btn-success btn-sm" name="button">Download</a>
         </td>
         <td>
-          <center><a type="button" class="btn btn-info btn-sm" name="button"
-            href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?= $jns_array['scan_raport3'] ?>&nama_file=<?= $raport_db['scan_raport3'] ?>">View</a>
-          <a type="button" href="../../raport/<?= $raport_db['scan_raport3'] ?>/<?= $d['raport_scan_sem3'] ?>" class="btn btn-success btn-sm" name="button">Download</a>
+          <center><button type="button" class="btn btn-success btn-sm" name="button">Download</button>
         </td>
       </tr>
       <tr>
@@ -191,22 +131,11 @@
            } ?>
         </td>
         <td>
-          <?php
-          if (empty($d['raport_scan_sem4'])) {
-            echo "Maaf, Raport Belum Di input";
-         }else{
-           echo $d['raport_scan_sem4'];
-           } ?>
-        </td>
-        <td>
           <center><a type="button" class="btn btn-info btn-sm" name="button"
             href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['raport4'] ?>&nama_file=raport_sem4">View</a>
-          <a type="button" href="../../raport/<?= $raport_db['raport4'] ?>/<?= $d['raport_sem4'] ?>" class="btn btn-success btn-sm" name="button">Download</a>
         </td>
         <td>
-          <center><a type="button" class="btn btn-info btn-sm" name="button"
-            href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?= $jns_array['scan_raport4'] ?>&nama_file=<?= $raport_db['scan_raport4'] ?>">View</a>
-          <a type="button" href="../../raport/<?= $raport_db['scan_raport4'] ?>/<?= $d['raport_scan_sem4'] ?>" class="btn btn-success btn-sm" name="button">Download</a>
+          <center><button type="button" class="btn btn-success btn-sm" name="button">Download</button>
         </td>
       </tr>
       <tr>
@@ -220,43 +149,19 @@
            } ?>
         </td>
         <td>
-          <?php
-          if (empty($d['raport_scan_sem5'])) {
-            echo "Maaf, Raport Belum Di input";
-         }else{
-           echo $d['raport_scan_sem5'];
-           } ?>
-        </td>
-        <td>
           <center><a type="button" class="btn btn-info btn-sm" name="button"
             href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['raport5'] ?>&nama_file=raport_sem5">View</a>
-          <a type="button" href="../../raport/<?= $raport_db['raport5'] ?>/<?= $d['raport_sem5'] ?>" class="btn btn-success btn-sm" name="button">Download</a>
         </td>
         <td>
-          <center><a type="button" class="btn btn-info btn-sm" name="button"
-            href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?= $jns_array['scan_raport5'] ?>&nama_file=<?= $raport_db['scan_raport5'] ?>">View</a>
-          <a type="button" href="../../raport/<?= $raport_db['scan_raport5'] ?>/<?= $d['raport_scan_sem5'] ?>" class="btn btn-success btn-sm" name="button">Download</a>
+          <center><button type="button" class="btn btn-success btn-sm" name="button">Download</button>
         </td>
       </tr>
-    </table>
-
-    <h3 style="margin-top:  50px;margin-bottom: 20px">
-      <center>Daftar Arsip Siswa</center>
-    </h3>
-
-    <table class="table table-bordered">
-      <tr>
-        <th><center>Nama File</th>
-        <th><center>Kondisi File</th>
-        <th><center>Opsi</th>
-      </tr>
-
       <tr>
         <td>SKL</td>
         <td>
           <?php
           if (empty($d['skl'])) {
-            echo "Maaf, SKL Belum Di input";
+            echo "Maaf, Raport Belum Di input";
          }else{
            echo $d['skl'];
            } ?>
@@ -264,7 +169,9 @@
         <td>
           <center><a type="button" class="btn btn-info btn-sm" name="button"
             href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['skl'] ?>&nama_file=skl">View</a>
-          <button type="button" class="btn btn-success btn-sm" name="button">Download</button>
+        </td>
+        <td>
+          <center><button type="button" class="btn btn-success btn-sm" name="button">Download</button>
         </td>
       </tr>
       <tr>
@@ -272,7 +179,7 @@
         <td>
           <?php
           if (empty($d['ijazah'])) {
-            echo "Maaf, Ijazah Belum Di input";
+            echo "Maaf, Raport Belum Di input";
          }else{
            echo $d['ijazah'];
            } ?>
@@ -280,7 +187,9 @@
         <td>
           <center><a type="button" class="btn btn-info btn-sm" name="button"
             href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['ijazah'] ?>&nama_file=ijazah">View</a>
-            <button type="button" class="btn btn-success btn-sm" name="button">Download</button>
+        </td>
+        <td>
+          <center><button type="button" class="btn btn-success btn-sm" name="button">Download</button>
         </td>
       </tr>
       <tr>
@@ -288,7 +197,7 @@
         <td>
           <?php
           if (empty($d['ijazah_legalisir'])) {
-            echo "Maaf, Ijazah Belum Di input";
+            echo "Maaf, Raport Belum Di input";
          }else{
            echo $d['ijazah_legalisir'];
            } ?>
@@ -296,7 +205,9 @@
         <td>
           <center><a type="button" class="btn btn-info btn-sm" name="button"
             href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['ijazah_lgsr'] ?>&nama_file=ijazah_legalisir">View</a>
-          <button type="button" class="btn btn-success btn-sm" name="button">Download</button>
+        </td>
+        <td>
+          <center><button type="button" class="btn btn-success btn-sm" name="button">Download</button>
         </td>
       </tr>
       <tr>
@@ -304,7 +215,7 @@
         <td>
           <?php
           if (empty($d['skhun'])) {
-            echo "Maaf, SKHUN Belum Di input";
+            echo "Maaf, Raport Belum Di input";
          }else{
            echo $d['skhun'];
            } ?>
@@ -312,7 +223,9 @@
         <td>
           <center><a type="button" class="btn btn-info btn-sm" name="button"
             href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['skhun'] ?>&nama_file=skhun">View</a>
-        <button type="button" class="btn btn-success btn-sm" name="button">Download</button>
+        </td>
+        <td>
+          <center><button type="button" class="btn btn-success btn-sm" name="button">Download</button>
         </td>
       </tr>
       <tr>
@@ -320,7 +233,7 @@
         <td>
           <?php
           if (empty($d['photo_siswa'])) {
-            echo "Maaf, Photo Belum Di input";
+            echo "Maaf, Raport Belum Di input";
          }else{
            echo $d['photo_siswa'];
            } ?>
@@ -328,7 +241,9 @@
         <td>
           <center><a type="button" class="btn btn-info btn-sm" name="button"
             href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['photo'] ?>&nama_file=photo_siswa">View</a>
-        <button type="button" class="btn btn-success btn-sm" name="button">Download</button>
+        </td>
+        <td>
+          <center><button type="button" class="btn btn-success btn-sm" name="button">Download</button>
         </td>
       </tr>
     </table>
@@ -340,6 +255,5 @@
 
 
 </body>
-<?php include('footer.php') ?>
 
 </html>
