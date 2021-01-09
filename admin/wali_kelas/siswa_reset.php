@@ -74,7 +74,7 @@
 
 
         <?php } ?>
-        <center><input type="submit" class="btn btn-info btn" name="" value="simpan"></center>
+        <center><input type="submit" class="btn btn-info btn-sm" name="" value="simpan"></center>
         </form>
 
 </div>

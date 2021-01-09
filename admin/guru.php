@@ -13,7 +13,7 @@
 
     <div class="row mb-3">
         <div class="col-sm">
-            <a href="guru_tambah.php" type="button" class="btn btn-info btn-sm"> Tambah Guru</a>
+            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#TambahGuru">Tambah Guru</button>
         </div>
         <div class="col-sm">
         </div>

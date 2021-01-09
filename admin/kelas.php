@@ -15,7 +15,7 @@
 
   <div class="row mb-3">
     <div class="col-sm">
-      <a href="kelas_tambah.php" type="button" class="btn btn-info btn-sm"> Tambah Kelas</a>
+      <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#TambahKelas">Tambah Guru</button>
     </div>
     <div class="col-sm">
     </div>
@@ -38,7 +38,7 @@
       } elseif ($_GET['pesan'] == "hapus-berhasil") {
         echo "
               <div class='alert alert-info' role='alert'>
-                <center>Data Berhasil Dihapus 
+                <center>Data Berhasil Dihapus
               </div>
               ";
       } elseif ($_GET['pesan'] == "hapus-gagal") {

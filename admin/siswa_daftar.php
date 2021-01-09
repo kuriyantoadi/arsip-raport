@@ -1,4 +1,6 @@
-<?php include('header.php') ?>
+<?php
+include('header.php');
+?>
 
 <div class="container">
     <div class="row">
@@ -12,8 +14,9 @@
 
     <div class="row mb-3">
         <div class="col-sm">
-            <a href="siswa_tambah.php" type="button" class="btn btn-info btn-sm"> Tambah Siswa</a>
+            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#TambahSiswa">Tambah Siswa</button>
         </div>
+
         <div class="col-sm">
         </div>
         <div class="col-sm">
@@ -64,9 +67,7 @@
                 <th>
                     <center>Kelas
                 </th>
-                <th>
-                    <center>Kondisi Raport
-                </th>
+
                 <th>
                     <center>Lihat Raport
                 </th>
@@ -106,9 +107,7 @@
                 <td>
                     <center><?php echo $d['nama_kelas']; ?>
                 </td>
-                <td>
-                    <center><?php echo $d['nama_raport']; ?>
-                </td>
+
                 <td>
                     <center>
                         <a type="button" class="btn btn-primary btn-sm" href="raport_lihat.php?id_siswa=<?php echo $d['id_siswa'] ?>">View</a>
@@ -116,6 +115,7 @@
                 <td>
                     <center>
                         <a type="button" class="btn btn-info btn-sm" href="siswa_edit.php?id_siswa=<?php echo $d['id_siswa'] ?>">Edit</a>
+                        <a href="#" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#EditSiswa<?= $d['id_siswa']; ?>" >Edit</a>
                 </td>
                 <td>
                     <center>

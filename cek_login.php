@@ -29,11 +29,11 @@ $cek = mysqli_num_rows($data);
 if ($cek > 0) {
     $login = mysqli_fetch_assoc($data);
 
-    if ($login['status']=="AKTIF") {
+    if ($login['status']=="aktif") {
         $_SESSION['nisn'] = $nisn;
-        $_SESSION['status'] = "AKTIF";
+        $_SESSION['status'] = "aktif";
         // echo "cek";
-        header("location:tampil-siswa.php?nisn=$nisn");
+        header("location:siswa.php?nisn=$nisn");
     } else {
         // echo "salah1";
         header("location:index.php?pesan=gagal1");

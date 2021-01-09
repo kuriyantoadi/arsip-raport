@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-12">
       <center>
-        <h3 style="margin-top:  25px;"><b>Edit Siswa</b></h3>
+        <h3 style="margin-top:  25px;"><b>Raport Siswa</b></h3>
       </center>
       <br>
       <!-- font ganti jenis -->
@@ -17,89 +17,331 @@
   $data = mysqli_query($koneksi, "select * from tb_siswa where id_siswa='$id_siswa' ");
   while ($d = mysqli_fetch_array($data)) {
 
+  $jns_array = array(
+    'raport1' => 'Raport Asli Semester 1 ',
+    'raport2' => 'Raport Asli Semester 2',
+    'raport3' => 'Raport Asli Semester 3',
+    'raport4' => 'Raport Asli Semester 4',
+    'raport5' => 'Raport Asli Semester 5',
+    'scan_raport1' => 'Raport Scan Semester 1 ',
+    'scan_raport2' => 'Raport Scan Semester 2',
+    'scan_raport3' => 'Raport Scan Semester 3',
+    'scan_raport4' => 'Raport Scan Semester 4',
+    'scan_raport5' => 'Raport Scan Semester 5',
+    'skl' => 'SKL',
+    'ijazah' => 'Ijazah',
+    'ijazah_lgsr' => 'Ijazah Legalisir',
+    'skhun' => 'SKHUN',
+    'photo' => 'Photo Siswa'
+  );
+
+  $raport_db = array(
+    'raport1' => 'raport_sem1',
+    'raport2' => 'raport_sem2',
+    'raport3' => 'raport_sem3',
+    'raport4' => 'raport_sem4',
+    'raport5' => 'raport_sem5',
+    'scan_raport1' => 'raport_scan_sem1',
+    'scan_raport2' => 'raport_scan_sem2',
+    'scan_raport3' => 'raport_scan_sem3',
+    'scan_raport4' => 'raport_scan_sem4',
+    'scan_raport5' => 'raport_scan_sem5',
+    'skl' => 'skl',
+    'ijazah' => 'Ijazah',
+    'leg_ijazah' => 'leg_ijazah',
+    'skhun' => 'skhun',
+    'photo' => 'photo'
+  );
+
+  function r_kosong(){
+    echo "<center><button type='button' class='btn btn-sm ' name='button'>File Tidak Tersedia</button>";
+  }
+  function r_ada(){
+    echo "<center><button type='button' class='btn btn-success btn-sm ' name='button'>File Tersedia</button>";
+  }
+
   ?>
 
-    <a href='../raport/<?php echo $d['nama_raport']; ?>' class='btn mb-4 btn-info btn-sm'>Download Raport</a>
+    <table class="table table-bordered">
+      <tr>
+        <td>NISN Siswa</td>
+        <input type="hidden" name="id_siswa" value="<?php echo $d['id_siswa'] ?>">
+        <input type="hidden" name="nisn" value="<?php echo $d['nisn'] ?>">
+        <input type="hidden" name="kode_kelas" value="<?php echo $d['kode_kelas'] ?>">
+        <td><?php echo $d['nisn'] ?></td>
+      </tr>
+      <tr>
+        <td>Nama Siswa</td>
+        <td><?php echo $d['nama_siswa'] ?></td>
+      </tr>
+      <tr>
+        <td>Kelas Siswa</td>
+        <td><?php echo $d['kode_kelas'] ?></td>
+      </tr>
 
-    <form class="" action="raport_update.php" method="post" enctype="multipart/form-data">
+    </table>
 
-      <table class="table table-bordered">
-        <tr>
-          <td>NISN Siswa</td>
-          <input type="hidden" name="id_siswa" value="<?php echo $d['id_siswa'] ?>">
-          <input type="hidden" name="nisn" value="<?php echo $d['nisn'] ?>">
-          <input type="hidden" name="kode_kelas" value="<?php echo $d['kode_kelas'] ?>">
-          <td><?php echo $d['nisn'] ?></td>
-        </tr>
-        <tr>
-          <td>Nama Siswa</td>
-          <td><?php echo $d['nama_siswa'] ?></td>
-        </tr>
-        <tr>
-          <td>Kelas Siswa</td>
-          <td><?php echo $d['kode_kelas'] ?></td>
-        </tr>
-        <tr>
-          <td>Upload Raport</td>
-          <td>
-            <input type="file" name="pdf_raport" accept="application/pdf" class="form-control-file" id="raport" required>
-          </td>
-        </tr>
-        <tr>
-          <td>Status Raport</td>
-          <td><?php echo $d['nama_raport'] ?></td>
-        </tr>
-        <tr>
-          <td>Raport</td>
-          <td>
-            <?php
-            if (empty($d['nama_raport'])) {
-              echo "Maaf, Raport Belum Di input";
-            ?>
-            <?php } else { ?>
-              <embed src="../raport/<?php echo $d['nama_raport']; ?>" type="application/pdf" width="100%" height="500px">
-            <?php } ?>
-          </td>
-        </tr>
-      </table>
+    <h3 style="margin-top:  50px;margin-bottom: 20px">
+      <center>Daftar Raport</center>
+    </h3>
 
-    <?php } ?>
-    <center>
-      <input style="margin-bottom: 50px" type="submit" class="btn btn-info btn" name="upload" value="upload">
-    </center>
-    </form>
+    <table class="table table-bordered">
+      <tr>
+        <th><center>Nama File</th>
+        <th><center>Kondisi Raport Asli</th>
+        <th><center>Kondisi Raport Scan</th>
+        <th><center>Opsi Raport Asli</th>
+        <th><center>Opsi Raport Scan</th>
+      </tr>
+      <tr>
+        <td>Rapor Semester 1</td>
+        <td>
+          <?php
+          if (empty($d['raport_sem1'])) {
+            r_kosong();
+         }else{
+           r_ada();
+          } ?>
+        </td>
+        <td>
+          <?php if (empty($d['raport_scan_sem1'])) {
+            r_kosong();
+           }else{
+             r_ada();
+           } ?>
+        </td>
+        <td>
+          <center><a type="button" class="btn btn-info btn-sm" name="button"
+            href="raport_tampil.php?id_siswa=<?= $d['id_siswa']; ?>&jns_file=<?= $jns_array['raport1'] ?>&nama_file=<?= $raport_db['raport1'] ?>">View</a>
+          <a type="button" href="../raport/raport_sem1/<?= $d['raport_sem1'] ?>"
+            class="btn btn-success btn-sm" name="button">Download</a>
+        </td>
+        <td>
+          <center><a type="button" class="btn btn-info btn-sm" name="button"
+            href="raport_tampil.php?id_siswa=<?= $d['id_siswa']; ?>&jns_file=<?= $jns_array['scan_raport1'] ?>&nama_file=<?= $raport_db['scan_raport1'] ?>">View</a>
+          <a type="button" href="../raport/<?= $raport_db['scan_raport1'] ?>/<?= $d['raport_scan_sem1'] ?>"
+            class="btn btn-success btn-sm" name="button">Download</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Rapor Semester 2</td>
+        <td>
+          <?php
+        if (empty($d['raport_sem2'])) {
+          r_kosong();
+       }else{
+         r_ada();
+         } ?>
+       </td>
+       <td>
+         <?php
+         if (empty($d['raport_scan_sem2'])) {
+           r_kosong();
+        }else{
+          r_ada();
+          } ?>
+       </td>
+        <td>
+          <center><a type="button" class="btn btn-info btn-sm" name="button"
+            href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['raport2'] ?>&nama_file=raport_sem2">View</a>
+          <a type="button" href="../raport/raport_sem2/<?= $d['raport_sem2'] ?>"
+            class="btn btn-success btn-sm" name="button">Download</a>
+        </td>
+        <td>
+          <center><a type="button" class="btn btn-info btn-sm" name="button"
+            href="raport_tampil.php?id_siswa=<?= $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['scan_raport2'] ?>&nama_file=<?= $raport_db['scan_raport2'] ?>">View</a>
+          <a type="button" href="../raport/<?= $raport_db['scan_raport2'] ?>/<?= $d['raport_scan_sem2'] ?>"
+            class="btn btn-success btn-sm" name="button">Download</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Rapor Semester 3</td>
+        <td>
+          <?php
+        if (empty($d['raport_sem3'])) {
+          r_kosong();
+       }else{
+         r_ada();
+         }
+         ?>
+       </td>
+       <td>
+         <?php
+         if (empty($d['raport_scan_sem3'])) {
+           r_kosong();
+        }else{
+          r_ada();
+          } ?>
+       </td>
+        <td>
+          <center><a type="button" class="btn btn-info btn-sm" name="button"
+            href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['raport3'] ?>&nama_file=raport_sem3">View</a>
+          <a type="button" href="../raport/<?= $raport_db['raport3'] ?>/<?= $d['raport_sem3'] ?>" class="btn btn-success btn-sm" name="button">Download</a>
+        </td>
+        <td>
+          <center><a type="button" class="btn btn-info btn-sm" name="button"
+            href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?= $jns_array['scan_raport3'] ?>&nama_file=<?= $raport_db['scan_raport3'] ?>">View</a>
+          <a type="button" href="../raport/<?= $raport_db['scan_raport3'] ?>/<?= $d['raport_scan_sem3'] ?>" class="btn btn-success btn-sm" name="button">Download</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Rapor Semester 4</td>
+        <td>
+          <?php
+          if (empty($d['raport_sem4'])) {
+            r_kosong();
+         }else{
+           r_ada();
+           } ?>
+        </td>
+        <td>
+          <?php
+          if (empty($d['raport_scan_sem4'])) {
+            r_kosong();
+         }else{
+           r_ada();
+           } ?>
+        </td>
+        <td>
+          <center><a type="button" class="btn btn-info btn-sm" name="button"
+            href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['raport4'] ?>&nama_file=raport_sem4">View</a>
+          <a type="button" href="../raport/<?= $raport_db['raport4'] ?>/<?= $d['raport_sem4'] ?>" class="btn btn-success btn-sm" name="button">Download</a>
+        </td>
+        <td>
+          <center><a type="button" class="btn btn-info btn-sm" name="button"
+            href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?= $jns_array['scan_raport4'] ?>&nama_file=<?= $raport_db['scan_raport4'] ?>">View</a>
+          <a type="button" href="../raport/<?= $raport_db['scan_raport4'] ?>/<?= $d['raport_scan_sem4'] ?>" class="btn btn-success btn-sm" name="button">Download</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Rapor Semester 5</td>
+        <td>
+          <?php
+          if (empty($d['raport_sem5'])) {
+            r_kosong();
+         }else{
+           echo $d['raport_sem5'];
+           } ?>
+        </td>
+        <td>
+          <?php
+          if (empty($d['raport_scan_sem5'])) {
+            r_kosong();
+         }else{
+           r_ada();
+           } ?>
+        </td>
+        <td>
+          <center><a type="button" class="btn btn-info btn-sm" name="button"
+            href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['raport5'] ?>&nama_file=raport_sem5">View</a>
+          <a type="button" href="../raport/<?= $raport_db['raport5'] ?>/<?= $d['raport_sem5'] ?>" class="btn btn-success btn-sm" name="button">Download</a>
+        </td>
+        <td>
+          <center><a type="button" class="btn btn-info btn-sm" name="button"
+            href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?= $jns_array['scan_raport5'] ?>&nama_file=<?= $raport_db['scan_raport5'] ?>">View</a>
+          <a type="button" href="../raport/<?= $raport_db['scan_raport5'] ?>/<?= $d['raport_scan_sem5'] ?>" class="btn btn-success btn-sm" name="button">Download</a>
+        </td>
+      </tr>
+    </table>
 
+    <h3 style="margin-top:  50px;margin-bottom: 20px">
+      <center>Daftar Arsip Siswa</center>
+    </h3>
+
+    <table class="table table-bordered">
+      <tr>
+        <th><center>Nama File</th>
+        <th><center>Kondisi File</th>
+        <th><center>Opsi</th>
+      </tr>
+
+      <tr>
+        <td>SKL</td>
+        <td>
+          <?php
+          if (empty($d['skl'])) {
+            r_kosong();
+         }else{
+           r_ada();
+           } ?>
+        </td>
+        <td>
+          <center><a type="button" class="btn btn-info btn-sm" name="button"
+            href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['skl'] ?>&nama_file=<?= $raport_db['skl'] ?>">View</a>
+          <button type="button" class="btn btn-success btn-sm" name="button">Download</button>
+        </td>
+      </tr>
+      <tr>
+        <td>Ijazah</td>
+        <td>
+          <?php
+          if (empty($d['ijazah'])) {
+            r_kosong();
+         }else{
+           r_ada();
+           } ?>
+        </td>
+        <td>
+          <center><a type="button" class="btn btn-info btn-sm" name="button"
+            href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['ijazah'] ?>&nama_file=ijazah">View</a>
+            <button type="button" class="btn btn-success btn-sm" name="button">Download</button>
+        </td>
+      </tr>
+      <tr>
+        <td>Ijazah Legalisir</td>
+        <td>
+          <?php
+          if (empty($d['ijazah_legalisir'])) {
+            r_kosong();
+         }else{
+           r_ada();
+           } ?>
+        </td>
+        <td>
+          <center><a type="button" class="btn btn-info btn-sm" name="button"
+            href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['ijazah_lgsr'] ?>&nama_file=<?= $raport_db['leg_ijazah'] ?>">View</a>
+          <button type="button" class="btn btn-success btn-sm" name="button">Download</button>
+        </td>
+      </tr>
+      <tr>
+        <td>SKHUN</td>
+        <td>
+          <?php
+          if (empty($d['skhun'])) {
+            r_kosong();
+         }else{
+           r_ada();
+           } ?>
+        </td>
+        <td>
+          <center><a type="button" class="btn btn-info btn-sm" name="button"
+            href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['skhun'] ?>&nama_file=<?= $raport_db['skhun'] ?>">View</a>
+        <button type="button" class="btn btn-success btn-sm" name="button">Download</button>
+        </td>
+      </tr>
+      <tr>
+        <td>Photo Siswa</td>
+        <td>
+          <?php
+          if (empty($d['photo_siswa'])) {
+            r_kosong();
+         }else{
+           r_ada();
+           } ?>
+        </td>
+        <td>
+          <center><a type="button" class="btn btn-info btn-sm" name="button"
+            href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['photo'] ?>&nama_file=<?= $raport_db['photo'] ?>">View</a>
+        <button type="button" class="btn btn-success btn-sm" name="button">Download</button>
+        </td>
+      </tr>
+    </table>
+
+  <?php } ?>
+
+  </form>
 </div>
-<script>
-  function searchTable() {
-    var input;
-    var saring;
-    var status;
-    var tbody;
-    var tr;
-    var td;
-    var i;
-    var j;
-    input = document.getElementById("input");
-    saring = input.value.toUpperCase();
-    tbody = document.getElementsByTagName("tbody")[0];;
-    tr = tbody.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td");
-      for (j = 0; j < td.length; j++) {
-        if (td[j].innerHTML.toUpperCase().indexOf(saring) > -1) {
-          status = true;
-        }
-      }
-      if (status) {
-        tr[i].style.display = "";
-        status = false;
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-</script>
+
 
 </body>
 

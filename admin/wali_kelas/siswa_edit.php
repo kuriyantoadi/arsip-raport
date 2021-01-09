@@ -57,8 +57,8 @@
 
     <?php } ?>
     <center>
-      <input type="submit" class="btn btn-info btn" name="" value="simpan">
-      <a href="siswa_reset.php?id_siswa=<?php echo $id_siswa ?>" class='btn btn-danger'>Ganti Password </a>
+      <input type="submit" class="btn btn-info btn-sm" name="" value="simpan">
+      <a href="siswa_reset.php?id_siswa=<?php echo $id_siswa ?>" class='btn btn-danger btn-sm'>Ganti Password </a>
     </center>
     </form>
 

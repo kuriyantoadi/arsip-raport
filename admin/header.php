@@ -3,6 +3,7 @@ session_start();
 if ($_SESSION['status'] != "admin") {
   header("location:login.php?pesan=belum_login");
 }
+include('modal.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +18,6 @@ if ($_SESSION['status'] != "admin") {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script type="text/javascript" src="../js/jquery-latest.js"></script>
-  <!-- <script type="text/javascript" src="../js/jquery.tablesorter.min.js"></script> -->
   <link href='#' rel='shortcut icon' type='image/x-icon' />
 
 </head>
@@ -33,8 +33,8 @@ if ($_SESSION['status'] != "admin") {
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" href="guru.php">Guru</a>
+          <span ></span>
         </li>
-
         <li class="nav-item">
           <a class="nav-link" href="siswa_daftar.php">Siswa</a>
         </li>
@@ -42,7 +42,6 @@ if ($_SESSION['status'] != "admin") {
         <li class="nav-item">
           <a class="nav-link" href="kelas.php">Kelas</a>
         </li>
-
       </ul>
     </div>
 
