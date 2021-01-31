@@ -47,7 +47,7 @@
     'scan_raport4' => 'raport_scan_sem4',
     'scan_raport5' => 'raport_scan_sem5',
     'skl' => 'skl',
-    'ijazah' => 'Ijazah',
+    'ijazah' => 'ijazah',
     'leg_ijazah' => 'leg_ijazah',
     'skhun' => 'skhun',
     'photo' => 'photo'

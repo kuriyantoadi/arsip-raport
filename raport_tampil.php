@@ -70,11 +70,8 @@ while ($d = mysqli_fetch_array($data)) {
                 <input type="hidden" name="angkatan" value="<?php echo $d['angkatan'] ?>">
                 <input type="file" name="pdf_raport" accept="application/pdf" class="form-control-file" id="raport" required>
                 <input style="margin-bottom: 20px;margin-top: 15px" type="submit" class="btn btn-info btn" name="upload" value="upload">
-
               <?php } else { ?>
-                 <a type="button" class="btn btn-danger btn-sm" href="raport_hapus.php?nama_file=<?php echo $nama_file ?>&id_siswa=<?php echo $id_siswa ?>&jns_file=<?php echo $jns_file ?>"
-                   onclick="return confirm('Anda yakin Hapus Raport siswa <?php echo $d['nama_siswa']; ?> ?')">Hapus Raport</a>
-                <a href="../raport/<?php echo $nama_file ?>/<?php echo $d[$nama_file] ?>" type="button" class="btn btn-success btn-sm">Download Raport</a>
+                <a href="raport/<?php echo $nama_file ?>/<?php echo $d[$nama_file] ?>" type="button" class="btn btn-success btn-sm">Download Raport</a>
                 <embed style="margin-top: 20px" src="raport/<?php echo $nama_file ?>/<?php echo $d[$nama_file] ?>" type="application/pdf" width="100%" height="500px">
 
               <?php } ?>

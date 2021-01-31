@@ -47,7 +47,7 @@
     'scan_raport4' => 'raport_scan_sem4',
     'scan_raport5' => 'raport_scan_sem5',
     'skl' => 'skl',
-    'ijazah' => 'Ijazah',
+    'ijazah' => 'ijazah',
     'leg_ijazah' => 'leg_ijazah',
     'skhun' => 'skhun',
     'photo' => 'photo'
@@ -268,7 +268,7 @@
         <td>
           <center><a type="button" class="btn btn-info btn-sm" name="button"
             href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['skl'] ?>&nama_file=<?= $raport_db['skl'] ?>">View</a>
-          <button type="button" class="btn btn-success btn-sm" name="button">Download</button>
+          <a href="../../raport/<?= $raport_db['skl'] ?>/<?= $d['skl'] ?>" type="button" class="btn btn-success btn-sm" name="button">Download</a>
         </td>
       </tr>
       <tr>
@@ -284,14 +284,14 @@
         <td>
           <center><a type="button" class="btn btn-info btn-sm" name="button"
             href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['ijazah'] ?>&nama_file=ijazah">View</a>
-            <button type="button" class="btn btn-success btn-sm" name="button">Download</button>
+          <a href="../../raport/<?= $raport_db['ijazah'] ?>/<?= $d['ijazah'] ?>" type="button" class="btn btn-success btn-sm" name="button">Download</a>
         </td>
       </tr>
       <tr>
         <td>Ijazah Legalisir</td>
         <td>
           <?php
-          if (empty($d['ijazah_legalisir'])) {
+          if (empty($d['leg_ijazah'])) {
             r_kosong();
          }else{
            r_ada();
@@ -300,7 +300,7 @@
         <td>
           <center><a type="button" class="btn btn-info btn-sm" name="button"
             href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['ijazah_lgsr'] ?>&nama_file=<?= $raport_db['leg_ijazah'] ?>">View</a>
-          <button type="button" class="btn btn-success btn-sm" name="button">Download</button>
+          <a href="../../raport/<?= $raport_db['leg_ijazah'] ?>/<?= $d['leg_ijazah'] ?>" type="button" class="btn btn-success btn-sm" name="button">Download</a>
         </td>
       </tr>
       <tr>
@@ -316,14 +316,14 @@
         <td>
           <center><a type="button" class="btn btn-info btn-sm" name="button"
             href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['skhun'] ?>&nama_file=<?= $raport_db['skhun'] ?>">View</a>
-        <button type="button" class="btn btn-success btn-sm" name="button">Download</button>
+          <a href="../../raport/<?= $raport_db['skhun'] ?>/<?= $d['skhun'] ?>" type="button" class="btn btn-success btn-sm" name="button">Download</a>
         </td>
       </tr>
       <tr>
         <td>Photo Siswa</td>
         <td>
           <?php
-          if (empty($d['photo_siswa'])) {
+          if (empty($d['photo'])) {
             r_kosong();
          }else{
            r_ada();
@@ -332,7 +332,7 @@
         <td>
           <center><a type="button" class="btn btn-info btn-sm" name="button"
             href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['photo'] ?>&nama_file=<?= $raport_db['photo'] ?>">View</a>
-        <button type="button" class="btn btn-success btn-sm" name="button">Download</button>
+          <a href="../../raport/<?= $raport_db['photo'] ?>/<?= $d['photo'] ?>" type="button" class="btn btn-success btn-sm" name="button">Download</a>
         </td>
       </tr>
     </table>

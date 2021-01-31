@@ -1,5 +1,17 @@
+<?php include('header.php') ?>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <center>
+        <h3 style="margin-top:  25px;"><b>Raport Siswa</b></h3>
+      </center>
+      <br>
+      <!-- font ganti jenis -->
+    </div>
+
+  </div>
+
   <?php
-  include('header.php');
   include('koneksi.php');
   $nisn = $_GET['nisn'];
   $data = mysqli_query($koneksi, "select * from tb_siswa where nisn='$nisn' ");
@@ -35,7 +47,7 @@
     'scan_raport4' => 'raport_scan_sem4',
     'scan_raport5' => 'raport_scan_sem5',
     'skl' => 'skl',
-    'ijazah' => 'ijazah',
+    'ijazah' => 'Ijazah',
     'leg_ijazah' => 'leg_ijazah',
     'skhun' => 'skhun',
     'photo' => 'photo'
@@ -49,16 +61,6 @@
   }
 
   ?>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <center>
-          <h3 style="margin-top:  25px;"><b>Raport Siswa</b></h3>
-        </center>
-        <br>
-        <!-- font ganti jenis -->
-      </div>
-    </div>
 
     <table class="table table-bordered">
       <tr>
@@ -87,7 +89,9 @@
       <tr>
         <th><center>Nama File</th>
         <th><center>Kondisi Raport Asli</th>
+        <th><center>Kondisi Raport Scan</th>
         <th><center>Raport Asli</th>
+        <th><center>Raport Scan</th>
       </tr>
       <tr>
         <td>Rapor Semester 1</td>
@@ -100,10 +104,22 @@
           } ?>
         </td>
         <td>
+          <?php if (empty($d['raport_scan_sem1'])) {
+            r_kosong();
+           }else{
+             r_ada();
+           } ?>
+        </td>
+        <td>
           <center><a type="button" href="raport/raport_sem1/<?= $d['raport_sem1'] ?>"
             class="btn btn-success btn-sm" name="button">Download</a>
         </td>
-
+        <td>
+          <center><a type="button" class="btn btn-info btn-sm" name="button"
+            href="raport_tampil.php?id_siswa=<?= $d['id_siswa']; ?>&jns_file=<?= $jns_array['scan_raport1'] ?>&nama_file=<?= $raport_db['scan_raport1'] ?>">View</a>
+          <a type="button" href="raport/<?= $raport_db['scan_raport1'] ?>/<?= $d['raport_scan_sem1'] ?>"
+            class="btn btn-success btn-sm" name="button">Download</a>
+        </td>
       </tr>
       <tr>
         <td>Rapor Semester 2</td>
@@ -115,9 +131,23 @@
          r_ada();
          } ?>
        </td>
+       <td>
+         <?php
+         if (empty($d['raport_scan_sem2'])) {
+           r_kosong();
+        }else{
+          r_ada();
+          } ?>
+       </td>
         <td>
           <center>
             <a type="button" href="raport/raport_sem2/<?= $d['raport_sem2'] ?>"
+            class="btn btn-success btn-sm" name="button">Download</a>
+        </td>
+        <td>
+          <center><a type="button" class="btn btn-info btn-sm" name="button"
+            href="raport_tampil.php?id_siswa=<?= $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['scan_raport2'] ?>&nama_file=<?= $raport_db['scan_raport2'] ?>">View</a>
+          <a type="button" href="raport/<?= $raport_db['scan_raport2'] ?>/<?= $d['raport_scan_sem2'] ?>"
             class="btn btn-success btn-sm" name="button">Download</a>
         </td>
       </tr>
@@ -132,8 +162,21 @@
          }
          ?>
        </td>
+       <td>
+         <?php
+         if (empty($d['raport_scan_sem3'])) {
+           r_kosong();
+        }else{
+          r_ada();
+          } ?>
+       </td>
         <td>
           <center><a type="button" href="raport/<?= $raport_db['raport3'] ?>/<?= $d['raport_sem3'] ?>" class="btn btn-success btn-sm" name="button">Download</a>
+        </td>
+        <td>
+          <center><a type="button" class="btn btn-info btn-sm" name="button"
+            href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?= $jns_array['scan_raport3'] ?>&nama_file=<?= $raport_db['scan_raport3'] ?>">View</a>
+          <a type="button" href="raport/<?= $raport_db['scan_raport3'] ?>/<?= $d['raport_scan_sem3'] ?>" class="btn btn-success btn-sm" name="button">Download</a>
         </td>
       </tr>
       <tr>
@@ -147,7 +190,20 @@
            } ?>
         </td>
         <td>
+          <?php
+          if (empty($d['raport_scan_sem4'])) {
+            r_kosong();
+         }else{
+           r_ada();
+           } ?>
+        </td>
+        <td>
           <center><a type="button" href="raport/<?= $raport_db['raport4'] ?>/<?= $d['raport_sem4'] ?>" class="btn btn-success btn-sm" name="button">Download</a>
+        </td>
+        <td>
+          <center><a type="button" class="btn btn-info btn-sm" name="button"
+            href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?= $jns_array['scan_raport4'] ?>&nama_file=<?= $raport_db['scan_raport4'] ?>">View</a>
+          <a type="button" href="raport/<?= $raport_db['scan_raport4'] ?>/<?= $d['raport_scan_sem4'] ?>" class="btn btn-success btn-sm" name="button">Download</a>
         </td>
       </tr>
       <tr>
@@ -161,98 +217,15 @@
            } ?>
         </td>
         <td>
-          <center><a type="button" href="raport/<?= $raport_db['raport5'] ?>/<?= $d['raport_sem5'] ?>" class="btn btn-success btn-sm" name="button">Download</a>
-        </td>
-      </tr>
-    </table>
-
-
-
-    <h3 style="margin-top:  50px;margin-bottom: 20px">
-      <center>Daftar Raport Upload</center>
-    </h3>
-
-    <table class="table table-bordered">
-      <tr>
-        <th><center>Nama File</th>
-        <th><center>Kondisi Raport Scan</th>
-        <th><center>Raport Scan</th>
-      </tr>
-      <tr>
-        <td>Rapor Semester 1</td>
-        <td>
-          <?php if (empty($d['raport_scan_sem1'])) {
-            r_kosong();
-           }else{
-             r_ada();
-           } ?>
-        </td>
-        <td>
-          <center><a type="button" class="btn btn-info btn-sm" name="button"
-            href="raport_tampil.php?id_siswa=<?= $d['id_siswa']; ?>&jns_file=<?= $jns_array['scan_raport1'] ?>&nama_file=<?= $raport_db['scan_raport1'] ?>">View</a>
-          <a type="button" href="raport/<?= $raport_db['scan_raport1'] ?>/<?= $d['raport_scan_sem1'] ?>"
-            class="btn btn-success btn-sm" name="button">Download</a>
-        </td>
-      </tr>
-      <tr>
-        <td>Rapor Semester 2</td>
-       <td>
-         <?php
-         if (empty($d['raport_scan_sem2'])) {
-           r_kosong();
-        }else{
-          r_ada();
-          } ?>
-       </td>
-      <td>
-        <center><a type="button" class="btn btn-info btn-sm" name="button"
-          href="raport_tampil.php?id_siswa=<?= $d['id_siswa']; ?>&jns_file=<?php echo $jns_array['scan_raport2'] ?>&nama_file=<?= $raport_db['scan_raport2'] ?>">View</a>
-        <a type="button" href="raport/<?= $raport_db['scan_raport2'] ?>/<?= $d['raport_scan_sem2'] ?>"
-          class="btn btn-success btn-sm" name="button">Download</a>
-      </td>
-      </tr>
-      <tr>
-        <td>Rapor Semester 3</td>
-       <td>
-         <?php
-         if (empty($d['raport_scan_sem3'])) {
-           r_kosong();
-        }else{
-          r_ada();
-          } ?>
-       </td>
-
-        <td>
-          <center><a type="button" class="btn btn-info btn-sm" name="button"
-            href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?= $jns_array['scan_raport3'] ?>&nama_file=<?= $raport_db['scan_raport3'] ?>">View</a>
-          <a type="button" href="raport/<?= $raport_db['scan_raport3'] ?>/<?= $d['raport_scan_sem3'] ?>" class="btn btn-success btn-sm" name="button">Download</a>
-        </td>
-      </tr>
-      <tr>
-        <td>Rapor Semester 4</td>
-        <td>
-          <?php
-          if (empty($d['raport_scan_sem4'])) {
-            r_kosong();
-         }else{
-           r_ada();
-           } ?>
-        </td>
-        <td>
-          <center><a type="button" class="btn btn-info btn-sm" name="button"
-            href="raport_tampil.php?id_siswa=<?php echo $d['id_siswa']; ?>&jns_file=<?= $jns_array['scan_raport4'] ?>&nama_file=<?= $raport_db['scan_raport4'] ?>">View</a>
-          <a type="button" href="raport/<?= $raport_db['scan_raport4'] ?>/<?= $d['raport_scan_sem4'] ?>" class="btn btn-success btn-sm" name="button">Download</a>
-        </td>
-      </tr>
-      <tr>
-        <td>Rapor Semester 5</td>
-        <td>
           <?php
           if (empty($d['raport_scan_sem5'])) {
             r_kosong();
          }else{
            r_ada();
            } ?>
+        </td>
+        <td>
+          <center><a type="button" href="raport/<?= $raport_db['raport5'] ?>/<?= $d['raport_sem5'] ?>" class="btn btn-success btn-sm" name="button">Download</a>
         </td>
         <td>
           <center><a type="button" class="btn btn-info btn-sm" name="button"
@@ -284,7 +257,7 @@
            } ?>
         </td>
         <td>
-          <center><a href="raport/<?= $raport_db['skl'] ?>/<?= $d['skl'] ?>" type="button" class="btn btn-success btn-sm" name="button">Download</a>
+          <center><button type="button" class="btn btn-success btn-sm" name="button">Download</button>
         </td>
       </tr>
       <tr>
@@ -298,21 +271,21 @@
            } ?>
         </td>
         <td>
-          <center><a href="raport/<?= $raport_db['ijazah'] ?>/<?= $d['ijazah'] ?>" type="button" class="btn btn-success btn-sm" name="button">Download</a>
+          <center><button type="button" class="btn btn-success btn-sm" name="button">Download</button>
         </td>
       </tr>
       <tr>
         <td>Ijazah Legalisir</td>
         <td>
           <?php
-          if (empty($d['leg_ijazah'])) {
+          if (empty($d['ijazah_legalisir'])) {
             r_kosong();
          }else{
            r_ada();
            } ?>
         </td>
         <td>
-          <center><a href="raport/<?= $raport_db['leg_ijazah'] ?>/<?= $d['leg_ijazah'] ?>" type="button" class="btn btn-success btn-sm" name="button">Download</a>
+          <center><button type="button" class="btn btn-success btn-sm" name="button">Download</button>
         </td>
       </tr>
       <tr>
@@ -326,21 +299,21 @@
            } ?>
         </td>
         <td>
-          <center><a href="raport/<?= $raport_db['skhun'] ?>/<?= $d['skhun'] ?>" type="button" class="btn btn-success btn-sm" name="button">Download</a>
+          <center><button type="button" class="btn btn-success btn-sm" name="button">Download</button>
         </td>
       </tr>
       <tr>
         <td>Photo Siswa</td>
         <td>
           <?php
-          if (empty($d['photo'])) {
+          if (empty($d['photo_siswa'])) {
             r_kosong();
          }else{
            r_ada();
            } ?>
         </td>
         <td>
-          <center><a href="raport/<?= $raport_db['photo'] ?>/<?= $d['photo'] ?>" type="button" class="btn btn-success btn-sm" name="button">Download</a>
+          <center><button type="button" class="btn btn-success btn-sm" name="button">Download</button>
         </td>
       </tr>
     </table>
