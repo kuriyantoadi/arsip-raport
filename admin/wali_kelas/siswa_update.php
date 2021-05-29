@@ -15,7 +15,7 @@ $kode_kelas = $_POST['kode_kelas'];
 mysqli_query($koneksi, "UPDATE tb_siswa SET
              nisn='$nisn',
              nama_siswa='$nama_siswa',
-             kode_kelas='$kode_kelas'
+             kode_kelas='$kode_kelas',
              where id_siswa='$id_siswa'
              ");
 
